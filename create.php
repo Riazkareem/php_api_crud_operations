@@ -1,4 +1,15 @@
 <?php
+// header('Access-Control-Allow-Origin: *');
+// header("Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS");
+// header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type");
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
+
+
 include 'database.php'; 
 
 if(!isset($_POST['name'])){
@@ -34,12 +45,16 @@ $sql = "insert into users(name,email,password) values('".$name."','".$email."','
 $result = mysqli_query($con,$sql);
 if ($result) {
     $last_id = mysqli_insert_id($con);   
-    echo json_encode(array("success"=>"New Record with ID $last_id inserted Successfully"));
+    echo json_encode(array("message"=>"New Record with ID $last_id inserted Successfully"));
     return;
   } else {
-    echo json_encode(array("Error:"=>mysqli_error($con)));
+    echo json_encode(array("message:"=>mysqli_error($con)));
 
   }
   mysqli_close($con);
+
+
+
+
 
 ?>

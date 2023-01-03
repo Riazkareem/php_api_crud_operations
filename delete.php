@@ -1,4 +1,11 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
+
+
 include 'database.php'; 
 
 if(!isset($_POST['email'])){
@@ -20,10 +27,10 @@ if($resultForEmail == 0){
 $sql = "delete from users where email ='".$email."'";
 $result = mysqli_query($con,$sql);
 if ($result) {
-    echo json_encode(array("success"=>"Data deleted Successfully"));
+    echo json_encode(array("message"=>"Data deleted Successfully"));
     return;
   } else {
-    echo json_encode(array("Error:"=>mysqli_error($con)));
+    echo json_encode(array("message:"=>mysqli_error($con)));
 
   }
   mysqli_close($con);

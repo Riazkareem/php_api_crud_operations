@@ -1,4 +1,10 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Headers: X-Reuested-Width');
+
+
+
 include 'database.php'; 
 $emparray = array();
 
@@ -15,7 +21,7 @@ if($resultForEmail ==0 ){
     return;
 }
 if($resultForEmail > 0){
-    echo json_encode(array("message"=>"success","data"=>$emparray));
+    echo json_encode(array("phpdata"=>$emparray));
     return;
 }
 
